@@ -3,6 +3,8 @@ import { revalidatePath } from 'next/cache'
 import { Trash2, PlusCircle, Pencil } from 'lucide-react'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 const prisma = new PrismaClient()
 
 export default async function AdminNewsPage() {

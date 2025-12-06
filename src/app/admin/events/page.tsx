@@ -3,6 +3,8 @@ import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import { Trash2, CalendarPlus, Calendar, Pencil } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 const prisma = new PrismaClient()
 
 export default async function AdminEventsPage() {
