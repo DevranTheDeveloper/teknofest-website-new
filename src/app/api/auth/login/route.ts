@@ -9,6 +9,7 @@ const prisma = new PrismaClient()
 export async function POST(request: Request) {
     try {
         const { username, password } = await request.json()
+        console.log('Login attempt for:', username)
 
         if (!username || !password) {
             return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
@@ -17,12 +18,14 @@ export async function POST(request: Request) {
         const admin = await prisma.admin.findUnique({
             where: { username },
         })
+        console.log('Admin found in DB:', !!admin)
 
         if (!admin) {
             return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
         }
 
         const isValid = await bcrypt.compare(password, admin.password)
+        console.log('Password valid:', isValid)
 
         if (!isValid) {
             return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
