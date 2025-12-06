@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+}
+
+model Role {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  weight    Int      @default(0)
+  members   Member[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Member {
+  id        String   @id @default(uuid())
+  name      String
+  roleId    String
+  role      Role     @relation(fields: [roleId], references: [id])
+  image     String?
+  bio       String?
+  instagram String?
+  linkedin  String?
+  twitter   String?
+  imagePosition String? // Tailwind object-position class (e.g., 'object-top', 'object-center')
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  date        DateTime
+  image       String?
+  link        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  thumbnail   String?
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model News {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  thumbnail   String?
+  date        DateTime @default(now())
+  content     String   // Full article content
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
