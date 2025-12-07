@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import { ArrowLeft, Save } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
 
 export default async function AddMemberPage() {
     const roles = await db.role.findMany({ orderBy: { weight: 'desc' } })
