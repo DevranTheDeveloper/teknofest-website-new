@@ -32,6 +32,10 @@ export default function Footer() {
                     <p className="text-center text-base text-gray-400">
                         &copy; {new Date().getFullYear()} Haliç University TeknoFest Club. All rights reserved.
                     </p>
+                    {/* Easter Egg: Hidden Developer Credit */}
+                    <p className="text-center text-[10px] text-gray-50 dark:text-gray-900 mt-4 select-text">
+                        Created by DevranTheDeveloper
+                    </p>
                 </div>
             </div>
         </footer>
